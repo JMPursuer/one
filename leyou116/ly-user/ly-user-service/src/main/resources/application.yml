@@ -1,0 +1,36 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/leyou
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  rabbitmq:
+    host: 127.0.0.1
+    username: leyou116
+    password: leyou
+    virtual-host: /leyou116
+  redis:
+    host: 127.0.0.1
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+mybatis:
+  type-aliases-package: com.leyou.user.domain
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    com.leyou: debug
+ly:
+  encoder:
+    crypt:
+      secret: ${random.uuid} # 随机的密钥，使用uuid
+      strength: 10 # 加密强度4~31，决定了密码和盐加密时的运算次数，超过10以后加密耗时会显著增加
